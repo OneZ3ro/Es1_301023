@@ -1,6 +1,7 @@
 package angelomoreno.Es1_301023;
 
 import angelomoreno.Es1_301023.entities.Drink;
+import angelomoreno.Es1_301023.entities.Menu;
 import angelomoreno.Es1_301023.entities.Pizza;
 import angelomoreno.Es1_301023.entities.Topping;
 import org.springframework.context.annotation.Bean;
@@ -88,5 +89,27 @@ public class BeansConfiguration {
     @Scope("prototype")
     Drink vino() {
         return new Drink("vino", 607, 7.49, 0.75, 13);
+    }
+
+    @Bean
+    @Scope("prototype")
+    Menu menu() {
+        List<Pizza> pizze = new ArrayList<>();
+        pizze.add(margherita());
+        pizze.add(odiolitalia());
+        pizze.add(salume());
+
+        List<Topping> aggiunte = new ArrayList<>();
+        aggiunte.add(formaggio());
+        aggiunte.add(prosciutto());
+        aggiunte.add(cipolla());
+        aggiunte.add(pineapple());
+        aggiunte.add(salami());
+
+        List<Drink> bevande = new ArrayList<>();
+        bevande.add(limonata());
+        bevande.add(acqua());
+        bevande.add(vino());
+        return new Menu(pizze, aggiunte, bevande);
     }
 }
